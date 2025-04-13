@@ -2,49 +2,58 @@ package linecomparison;
 
 import java.util.Scanner;
 
-class LineComparison {
+class LineComparison 
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
 
         // Displaying a welcome message
-        System.out.println("Welcome to Line Comparison Computation");
+    	 System.out.println("Welcome to Line Comparison Computation (Using OOP)");
 
-        Scanner sc = new Scanner(System.in);
+         Scanner sc = new Scanner(System.in);
 
-        // taking the user input for length 1
-        System.out.println("Enter x1 coordinate: ");
-        int x1 = sc.nextInt();
-        System.out.println("Enter y1 coordinate: ");
-        int y1 = sc.nextInt();
-        System.out.println("Enter x2 coordinate: ");
-        int x2 = sc.nextInt();
-        System.out.println("Enter y2 coordinate: ");
-        int y2 = sc.nextInt();
+         // Read Line 1
+         System.out.println("Enter coordinates for Line 1:");
+         Point p1 = new Point(sc.nextInt(), sc.nextInt());
+         Point p2 = new Point(sc.nextInt(), sc.nextInt());
+         Line line1 = new Line(p1, p2);
 
-        // taking the user input for length 2
-        System.out.println("Enter a1 coordinate: ");
-        int a1 = sc.nextInt();
-        System.out.println("Enter b1 coordinate: ");
-        int b1 = sc.nextInt();
-        System.out.println("Enter a2 coordinate: ");
-        int a2 = sc.nextInt();
-        System.out.println("Enter b2 coordinate: ");
-        int b2 = sc.nextInt();
+         // Read Line 2
+         System.out.println("Enter coordinates for Line 2:");
+         Point q1 = new Point(sc.nextInt(), sc.nextInt());
+         Point q2 = new Point(sc.nextInt(), sc.nextInt());
+         Line line2 = new Line(q1, q2);
 
-        // calculating lengths
-        Double lengthOfLine1 = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-        Double lengthOfLine2 = Math.sqrt(Math.pow((a2 - a1), 2) + Math.pow((b2 - b1), 2));
+         // Display lengths
+         System.out.println("Length of Line 1: " + line1.getLength());
+         System.out.println("Length of Line 2: " + line2.getLength());
 
-        System.out.println("Length of Line 1: " + lengthOfLine1);
-        System.out.println("Length of Line 2: " + lengthOfLine2);
+         // Check equality
+         if (line1.equals(line2)) 
+         {
+             System.out.println("The two lines are equal in length.");
+         }
+         else 
+         {
+             System.out.println("The two lines are not equal in length.");
+         }
 
-        // using equals() method to compare
-        if (lengthOfLine1.equals(lengthOfLine2)) {
-            System.out.println("The lengths of the two lines are equal.");
-        } else {
-            System.out.println("The lengths of the two lines are not equal.");
-        }
+         // Use compareTo to determine greater/smaller
+         int result = line1.compareTo(line2);
+         if (result == 0)
+         {
+             System.out.println("Line 1 is equal to Line 2.");
+         }
+         else if (result > 0) 
+         {
+             System.out.println("Line 1 is longer than Line 2.");
+         }
+         else 
+         {
+             System.out.println("Line 1 is shorter than Line 2.");
+         }
 
-        sc.close();
+         sc.close();
     }
 }
